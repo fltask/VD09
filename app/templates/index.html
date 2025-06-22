@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <!-- Приветствие и статистика в одной строке -->
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6 text-center text-md-start">
+                <h2 class="fw-bold text-primary mb-2">
+                    <i class="bi bi-controller me-2"></i>Привет, {{ current_user.username }}!
+                </h2>
+                <p class="text-muted mb-0">Готов к новым достижениям?</p>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm text-center">
+                            <div class="card-body py-3">
+                                <div class="text-primary mb-1">
+                                    <i class="bi bi-trophy fs-4"></i>
+                                </div>
+                                <h4 class="mb-0">{{ current_user.clicks }}</h4>
+                                <small class="text-muted">Кликов</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm text-center">
+                            <div class="card-body py-3">
+                                <div class="text-success mb-1">
+                                    <i class="bi bi-person-badge fs-4"></i>
+                                </div>
+                                <h4 class="mb-0">{{ current_user.username }}</h4>
+                                <small class="text-muted">Профиль</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Игровая зона - основная кнопка -->
+        <div class="card border-0 shadow-lg">
+            <div class="card-header bg-gradient text-white text-center py-3"
+                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h4 class="mb-0">
+                    <i class="bi bi-gamepad me-2"></i>Игровая зона
+                </h4>
+            </div>
+            <div class="card-body p-4 text-center">
+                <div class="mb-3">
+                    <h5 class="text-muted mb-2">Ваш счет:</h5>
+                    <div class="display-4 text-primary fw-bold mb-3">{{ current_user.clicks }}</div>
+                </div>
+
+                <a href="{{ url_for('click') }}" class="btn btn-primary btn-lg px-5 py-3 shadow">
+                    <i class="bi bi-mouse me-2"></i>КЛИК!
+                </a>
+
+                <div class="mt-3">
+                    <small class="text-muted">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Каждый клик увеличивает счет на 1
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дополнительная информация - только на больших экранах -->
+        <div class="row mt-4 d-none d-lg-flex">
+            <div class="col-md-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body text-center py-3">
+                        <i class="bi bi-lightning text-warning fs-3 mb-2"></i>
+                        <h6>Быстрая игра</h6>
+                        <p class="text-muted small mb-0">Простое и увлекательное времяпрепровождение</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body text-center py-3">
+                        <i class="bi bi-graph-up text-success fs-3 mb-2"></i>
+                        <h6>Статистика</h6>
+                        <p class="text-muted small mb-0">Отслеживайте свой прогресс</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body text-center py-3">
+                        <i class="bi bi-shield-check text-info fs-3 mb-2"></i>
+                        <h6>Безопасность</h6>
+                        <p class="text-muted small mb-0">Ваши данные защищены</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

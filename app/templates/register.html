@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0">
+            <div class="card-header bg-success text-white text-center py-3">
+                <h4 class="mb-0">
+                    <i class="bi bi-person-plus me-2"></i>Регистрация
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" action="{{ url_for('register') }}">
+                    {{ form.hidden_tag() }}
+
+                    <div class="mb-3">
+                        <label for="{{ form.username.id }}" class="form-label">
+                            <i class="bi bi-person me-1"></i>{{ form.username.label.text }}
+                        </label>
+                        {{ form.username(class_="form-control", placeholder="Введите логин") }}
+                        {% for error in form.username.errors %}
+                        <div class="text-danger small mt-1">
+                            <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.password.id }}" class="form-label">
+                            <i class="bi bi-lock me-1"></i>{{ form.password.label.text }}
+                        </label>
+                        {{ form.password(class_="form-control", placeholder="Введите пароль") }}
+                        {% for error in form.password.errors %}
+                        <div class="text-danger small mt-1">
+                            <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.confirm_password.id }}" class="form-label">
+                            <i class="bi bi-lock-fill me-1"></i>{{ form.confirm_password.label.text }}
+                        </label>
+                        {{ form.confirm_password(class_="form-control", placeholder="Повторите пароль") }}
+                        {% for error in form.confirm_password.errors %}
+                        <div class="text-danger small mt-1">
+                            <i class="bi bi-exclamation-circle me-1"></i>{{ error }}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-person-plus me-2"></i>{{ form.submit.label.text }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center bg-light">
+                <p class="mb-0">
+                    Уже есть аккаунт?
+                    <a href="{{ url_for('login') }}" class="text-decoration-none">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>Войти
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
